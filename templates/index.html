@@ -43,16 +43,22 @@
                 </div>
             </div>
 
-            <!-- Preloaded Test Cases for Instant Testing (Text Only) -->
-            <div class="presets-container">
-                <div class="presets-header">
-                    <span>Sample tests:</span>
-                </div>
-                <div class="preset-chips" id="presetChips">
-                    <!-- Populated dynamically via JS -->
-                </div>
-            </div>
         </section>
+
+        <!-- Floating Side Samples Trigger (Pinned to side) -->
+        <button id="btnToggleSideSamples" class="side-samples-trigger mono" title="Open test samples">[ samples ]</button>
+
+        <!-- Pinned Side Drawer for Samples -->
+        <aside id="sideSamplesDrawer" class="side-samples-drawer mono hidden">
+            <div class="side-samples-header">
+                <span class="side-samples-title">[ TEST SAMPLES ]</span>
+                <button id="btnCloseSideSamples" class="side-samples-close">[ close ]</button>
+            </div>
+            <p class="side-samples-hint">Click any sample to test detection:</p>
+            <div class="side-samples-list" id="presetChips">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </aside>
 
         <!-- Loading State (Text Only) -->
         <div class="loading-state hidden" id="loadingState">

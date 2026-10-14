@@ -52,6 +52,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let latestResult = null;
 
+    // Side Drawer Elements
+    const btnToggleSideSamples = document.getElementById("btnToggleSideSamples");
+    const sideSamplesDrawer = document.getElementById("sideSamplesDrawer");
+    const btnCloseSideSamples = document.getElementById("btnCloseSideSamples");
+
+    if (btnToggleSideSamples && sideSamplesDrawer) {
+        btnToggleSideSamples.addEventListener("click", () => {
+            sideSamplesDrawer.classList.toggle("hidden");
+        });
+    }
+    if (btnCloseSideSamples && sideSamplesDrawer) {
+        btnCloseSideSamples.addEventListener("click", () => {
+            sideSamplesDrawer.classList.add("hidden");
+        });
+    }
+
     // 1. Initialize Presets
     async function loadPresets() {
         try {
@@ -66,16 +82,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderPresets(presets) {
+        if (!presetChips) return;
         presetChips.innerHTML = "";
         presets.forEach(preset => {
             const chip = document.createElement("button");
-            chip.className = "preset-chip";
-            chip.textContent = preset.label;
+            chip.className = "side-sample-item";
+            chip.innerHTML = `
+                <span class="sample-name">${preset.label}</span>
+                <span class="sample-category">[${preset.category}]</span>
+            `;
             chip.title = preset.description;
             chip.addEventListener("click", () => {
                 threatInput.value = preset.content;
                 autoResizeInput();
                 updateClearButton();
+                if (sideSamplesDrawer) {
+                    sideSamplesDrawer.classList.add("hidden");
+                }
                 executeAnalysis();
             });
             presetChips.appendChild(chip);
