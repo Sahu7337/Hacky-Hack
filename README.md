@@ -2,7 +2,7 @@
 
 > ⚡ **Hackathon 2026 — Track: Cybersecurity & Digital Trust**  
 > **Recognition:** Top 6 Finalist  
-> **Build:** Conceived, architected, and built in an intense 3-hour sprint.  
+> **Build:** Conceived, architected, and built solo in an intense 3-hour sprint.  
 > **Tagline:** Know before you click.
 
 ---
