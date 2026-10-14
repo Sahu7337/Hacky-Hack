@@ -337,14 +337,15 @@ textarea#threatInput::-webkit-scrollbar-track {
 }
 
 .search-disclaimer {
-    margin-top: 0.85rem;
-    font-size: 0.78rem;
+    margin-top: 0.5rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
     font-family: var(--font-sans);
     text-align: center;
     letter-spacing: -0.01em;
     user-select: none;
-    line-height: 1.4;
+    line-height: 1.35;
+    opacity: 0.8;
     transition: opacity 0.2s ease;
 }
 
