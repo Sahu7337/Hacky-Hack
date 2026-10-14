@@ -66,11 +66,11 @@
             <p class="loading-subtext">Evaluating domain footprint, phishing patterns, and psychological urgency...</p>
         </div>
 
-        <!-- Threat Assessment Results Card (Text Only) -->
+        <!-- Threat Assessment Results (List Wise, Unboxed) -->
         <section class="result-section hidden" id="resultSection">
-            <div class="result-card">
-                <!-- Top Header: Verdict & Score -->
-                <div class="result-header">
+            <div class="result-content-list">
+                <!-- 1. Header: Verdict & Score -->
+                <div class="result-list-item result-header-item">
                     <div class="verdict-meta">
                         <span class="label-eyebrow">Threat Assessment</span>
                         <div class="verdict-badge-row">
@@ -97,78 +97,62 @@
                     <div class="meter-fill" id="meterFill" style="width: 94%;"></div>
                 </div>
 
-                <!-- Plain English Warning / Summary -->
-                <div class="summary-box">
-                    <div class="summary-content">
-                        <h3 class="summary-heading">Assessment Summary</h3>
-                        <p class="summary-text" id="plainWarningText">
-                            This communication shows no deceptive hallmarks.
-                        </p>
-                    </div>
+                <!-- 2. Plain English Warning / Summary -->
+                <div class="result-list-item">
+                    <h3 class="section-list-heading">Assessment Summary</h3>
+                    <p class="summary-text" id="plainWarningText">
+                        This communication shows no deceptive hallmarks.
+                    </p>
                 </div>
 
-                <!-- Grid: Search Intelligence & Pattern Breakdown -->
-                <div class="analysis-grid">
-                    <!-- Column 1: SerpAPI Search Intelligence Footprint -->
-                    <div class="panel-card">
-                        <div class="panel-header">
-                            <div class="panel-title-wrap">
-                                <h4 class="panel-title">Search Trust Footprint</h4>
-                                <span class="panel-subtitle">SerpAPI / Google Search Index</span>
-                            </div>
-                            <span class="source-badge mono" id="serpSourceBadge">SerpAPI</span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="footprint-row">
-                                <span class="f-label">Extracted Domain:</span>
-                                <span class="f-value mono" id="extractedDomain">example.com</span>
-                            </div>
-                            <div class="footprint-row">
-                                <span class="f-label">Index Status:</span>
-                                <span class="f-value mono" id="domainStatus">Verified</span>
-                            </div>
-                            <div class="footprint-box mono" id="domainFootprintBox">
-                                Official registered domain with established search presence.
-                            </div>
-                        </div>
+                <!-- 3. SerpAPI Search Intelligence Footprint (List-wise, not grid) -->
+                <div class="result-list-item">
+                    <div class="item-header-row">
+                        <h4 class="section-list-heading">Search Trust Footprint</h4>
+                        <span class="source-badge mono" id="serpSourceBadge">SerpAPI</span>
                     </div>
-
-                    <!-- Column 2: Psychological & Deceptive Patterns -->
-                    <div class="panel-card">
-                        <div class="panel-header">
-                            <div class="panel-title-wrap">
-                                <h4 class="panel-title">Patterns & Triggers</h4>
-                                <span class="panel-subtitle">AI Behavioral Markers</span>
-                            </div>
-                            <span class="source-badge mono" id="aiEngineBadge">Gemini AI</span>
+                    <div class="footprint-list-body">
+                        <div class="footprint-row">
+                            <span class="f-label">Extracted Domain:</span>
+                            <span class="f-value mono" id="extractedDomain">example.com</span>
                         </div>
-                        <div class="panel-body">
-                            <div class="triggers-wrap">
-                                <span class="t-label">Triggers:</span>
-                                <div class="trigger-chips" id="triggerChips">
-                                    <span class="t-chip mono">Artificial Urgency</span>
-                                </div>
-                            </div>
-                            <ul class="pattern-list" id="patternList">
-                                <li>No suspicious manipulation detected.</li>
-                            </ul>
+                        <div class="footprint-row">
+                            <span class="f-label">Index Status:</span>
+                            <span class="f-value mono" id="domainStatus">Verified</span>
+                        </div>
+                        <div class="footprint-evidence mono" id="domainFootprintBox">
+                            Official registered domain with established search presence.
                         </div>
                     </div>
                 </div>
 
-                <!-- Recommended Precautions & Next Steps -->
-                <div class="precautions-card">
-                    <div class="precautions-header">
-                        <h4 class="precautions-title">Recommended Precautions</h4>
-                        <span class="precautions-subtitle">Steps to ensure safety</span>
+                <!-- 4. Deceptive Patterns & Triggers (Gemini AI) (List-wise, not grid) -->
+                <div class="result-list-item">
+                    <div class="item-header-row">
+                        <h4 class="section-list-heading">Detected Patterns & Triggers</h4>
+                        <span class="source-badge mono" id="aiEngineBadge">Gemini AI</span>
                     </div>
+                    <div class="triggers-wrap">
+                        <span class="t-label">Triggers:</span>
+                        <div class="trigger-chips" id="triggerChips">
+                            <span class="t-chip mono">Artificial Urgency</span>
+                        </div>
+                    </div>
+                    <ul class="pattern-list" id="patternList">
+                        <li>No suspicious manipulation detected.</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Recommended Precautions & Next Steps -->
+                <div class="result-list-item">
+                    <h4 class="section-list-heading">Recommended Precautions</h4>
                     <div class="precautions-list" id="precautionsList">
                         <!-- Populated via JS -->
                     </div>
                 </div>
 
-                <!-- Footer Actions (Text Only) -->
-                <div class="result-footer">
+                <!-- 6. Actions (Copy Report & Scan Another) -->
+                <div class="result-list-item result-actions-item">
                     <button class="btn-secondary" id="btnCopyReport">Copy Report</button>
                     <button class="btn-outline" id="btnAnalyzeAnother">Scan Another</button>
                 </div>
@@ -184,7 +168,7 @@
                     <h3 class="modal-title">Future Scope: Phone & Laptop Agent</h3>
                     <p class="modal-subtitle">Cross-platform daemon with pre-send threat blocking</p>
                 </div>
-                <button class="modal-close" id="btnCloseScope">[ close ]</button>
+                <button class="modal-close" id="btnCloseScope">Close</button>
             </div>
             <div class="modal-body">
                 <div class="scope-feature-grid">
