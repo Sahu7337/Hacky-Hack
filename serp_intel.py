@@ -187,48 +187,42 @@ def analyze_domain_footprint(domain: str, serpapi_key: str = None) -> dict:
         try:
             params = {
                 "engine": "google",
-                "q": f'site:{domain}',
+                "q": f'"{domain}"',
                 "api_key": serpapi_key,
                 "num": 5
             }
-            res = requests.get("https://serpapi.com/search.json", params=params, timeout=5)
+            res = requests.get("https://serpapi.com/search.json", params=params, timeout=10)
             if res.status_code == 200:
                 serpapi_used = True
                 data = res.json()
                 total_results = data.get("search_information", {}).get("total_results", 0)
-                indexed_results_estimate = total_results
+                organic_results = data.get("organic_results", [])
+                indexed_results_estimate = total_results if total_results > 0 else len(organic_results)
                 
-                # Also check search for domain reputation keywords
-                rep_params = {
-                    "engine": "google",
-                    "q": f'"{domain}" (scam OR fraud OR phishing OR warning)',
-                    "api_key": serpapi_key,
-                    "num": 3
-                }
-                rep_res = requests.get("https://serpapi.com/search.json", params=rep_params, timeout=4)
-                scam_mentions = 0
-                if rep_res.status_code == 200:
-                    scam_mentions = rep_res.json().get("search_information", {}).get("total_results", 0)
+                # Check organic titles and snippets for fraud / scam indicators
+                combined_snippets = " ".join([
+                    (r.get("title", "") + " " + r.get("snippet", "")).lower()
+                    for r in organic_results
+                ])
+                scam_hits = any(w in combined_snippets for w in ["scam", "fraud", "phishing", "fake", "warning", "complaint", "malicious"])
                 
-                if total_results == 0:
+                if indexed_results_estimate == 0:
                     trust_score = min(trust_score, 18)
                     status = "No Search Index Footprint"
-                    flags.append("SerpAPI Verification: Domain has ZERO indexed pages on Google Search (freshly created or unindexed website)")
-                    details = "Domain completely lacks established Google search presence. Genuine businesses have indexable search footprints."
-                elif scam_mentions > 5:
+                    flags.append("SerpAPI Verification: Domain has ZERO indexed presence on Google Search (freshly created or unindexed domain)")
+                    details = "Domain completely lacks established Google search presence. Genuine businesses possess verified indexable footprints."
+                elif scam_hits:
                     trust_score = min(trust_score, 20)
                     status = "Flagged in Fraud Reports"
-                    flags.append(f"SerpAPI Verification: Detected multiple scam/fraud warnings indexed for this domain on Google")
+                    flags.append("SerpAPI Verification: Detected fraud or scam warnings in Google search result snippets for this domain")
                     details = f"Search intelligence reveals community complaints or fraud warnings associated with {domain}."
                 else:
                     if not flags:
-                        trust_score = min(85, trust_score + 15)
+                        trust_score = min(88, trust_score + 15)
                         status = "Indexed Web Domain"
-                        details = f"Domain is indexed on Google Search with approximately {total_results} results."
-            else:
-                pass
-        except Exception as e:
-            # Fallback gracefully
+                        details = f"Domain is indexed on Google Search with established search presence."
+        except Exception:
+            # Fallback gracefully to local heuristic intelligence
             pass
 
     # If SerpAPI not used or errored, provide smart heuristic search intelligence
