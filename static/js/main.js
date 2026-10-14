@@ -105,21 +105,60 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Input Handling & Auto-resize
+    // 2. Input Handling & Auto-resize (Jitter-free smooth morphing)
+    let ghostMeasurer = null;
+    function measureTargetHeight(val) {
+        if (!ghostMeasurer) {
+            ghostMeasurer = document.createElement("textarea");
+            ghostMeasurer.setAttribute("tabindex", "-1");
+            ghostMeasurer.setAttribute("aria-hidden", "true");
+            ghostMeasurer.style.cssText = `
+                position: fixed !important;
+                top: -9999px !important;
+                left: -9999px !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+                overflow: hidden !important;
+                resize: none !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                line-height: 1.45 !important;
+                font-size: 0.95rem !important;
+            `;
+            document.body.appendChild(ghostMeasurer);
+        }
+
+        const inputStyle = window.getComputedStyle(threatInput);
+        ghostMeasurer.style.fontFamily = inputStyle.fontFamily;
+        ghostMeasurer.style.fontSize = inputStyle.fontSize;
+        ghostMeasurer.style.lineHeight = inputStyle.lineHeight;
+        ghostMeasurer.style.letterSpacing = inputStyle.letterSpacing;
+        ghostMeasurer.style.width = threatInput.clientWidth > 0 ? (threatInput.clientWidth + "px") : "520px";
+        ghostMeasurer.value = val;
+        return ghostMeasurer.scrollHeight;
+    }
+
     function autoResizeInput() {
         if (!threatInput) return;
         const inputContainer = threatInput.closest(".input-container");
-        
-        threatInput.style.height = "auto";
-        const scrollH = threatInput.scrollHeight;
         const val = threatInput.value;
 
-        // Morph to rounded rectangle when text increases (multi-line, newline, or long string)
-        const isMultiLine = scrollH > 36 || val.includes("\n") || val.length > 70;
+        // If empty or pure whitespace, restore sleek pill state
+        if (!val.trim()) {
+            if (inputContainer) inputContainer.classList.remove("is-expanded");
+            threatInput.style.height = "26px";
+            return;
+        }
+
+        // Measure text height cleanly without resetting threatInput.style.height to "auto"
+        const measuredH = measureTargetHeight(val);
+        const isMultiLine = val.includes("\n") || measuredH > 34;
 
         if (isMultiLine) {
             if (inputContainer) inputContainer.classList.add("is-expanded");
-            threatInput.style.height = Math.min(180, Math.max(60, scrollH)) + "px";
+            threatInput.style.height = Math.min(180, Math.max(60, measuredH)) + "px";
         } else {
             if (inputContainer) inputContainer.classList.remove("is-expanded");
             threatInput.style.height = "26px";

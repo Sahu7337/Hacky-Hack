@@ -217,18 +217,21 @@ body.has-results .logo-hero {
 }
 
 .input-container {
+    position: relative;
     background: var(--bg-surface);
     border: 1px solid var(--border-strong);
-    border-radius: 9999px;
-    padding: 0.4rem 0.5rem 0.4rem 1.35rem;
+    border-radius: 28px;
+    padding: 0.55rem 7.5rem 0.55rem 1.4rem;
+    min-height: 54px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-    transition: border-radius 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                padding 0.2s ease, 
-                border-color 0.15s ease, 
-                box-shadow 0.15s ease;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
+                padding 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
+                min-height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease, 
+                box-shadow 0.2s ease;
 }
 
 .input-container:focus-within {
@@ -238,10 +241,8 @@ body.has-results .logo-hero {
 /* Expanded state: morphs smoothly into a rounded rectangle when text increases */
 .input-container.is-expanded {
     border-radius: 18px;
-    padding: 0.85rem 1rem 0.75rem 1.25rem;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.65rem;
+    padding: 0.85rem 1.25rem 3.25rem 1.25rem;
+    min-height: 118px;
 }
 
 textarea#threatInput {
@@ -253,11 +254,15 @@ textarea#threatInput {
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 0.95rem;
-    line-height: 1.4;
+    line-height: 1.45;
+    height: 26px;
     min-height: 26px;
     max-height: 180px;
-    padding: 0.35rem 0;
-    transition: height 0.15s ease;
+    padding: 0.15rem 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    transition: height 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 textarea#threatInput::placeholder {
@@ -266,20 +271,35 @@ textarea#threatInput::placeholder {
 
 .input-container.is-expanded textarea#threatInput {
     padding: 0;
-    min-height: 60px;
+    overflow-y: auto;
+}
+
+textarea#threatInput::-webkit-scrollbar {
+    width: 4px;
+}
+textarea#threatInput::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+}
+textarea#threatInput::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .input-actions {
+    position: absolute;
+    right: 0.65rem;
+    bottom: 0.55rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 0.5rem;
     flex-shrink: 0;
+    transition: right 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                bottom 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .input-container.is-expanded .input-actions {
-    width: 100%;
-    padding-top: 0.25rem;
+    right: 0.85rem;
+    bottom: 0.75rem;
 }
 
 .text-link-btn {
