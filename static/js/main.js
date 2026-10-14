@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             chip.className = "side-sample-item";
             chip.innerHTML = `
                 <span class="sample-name">${preset.label}</span>
-                <span class="sample-category">[${preset.category}]</span>
+                <span class="sample-category">${preset.category}</span>
             `;
             chip.title = preset.description;
             chip.addEventListener("click", () => {
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. Copy Assessment Report
     btnCopyReport.addEventListener("click", () => {
         if (!latestResult) return;
-        const report = `[Sifter — Digital Threat Assessment]
+        const report = `Sifter — Digital Threat Assessment
 Verdict: ${latestResult.trust_verdict} (Trust Score: ${latestResult.trust_score}/100)
 Category: ${latestResult.threat_type}
 Analyzed: ${latestResult.analyzed_input}
@@ -402,18 +402,18 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
                 const isSerpActive = st.serpapi_active || hasLocalSerp;
 
                 if (isGeminiActive && isSerpActive) {
-                    apiStatusText.textContent = "[STATUS: Google Gemini AI & SerpAPI active (Live Mode)]";
+                    apiStatusText.textContent = "Status: Google Gemini AI & SerpAPI active (Live Mode)";
                     if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-safe)";
                 } else if (isGeminiActive || isSerpActive) {
-                    apiStatusText.textContent = `[STATUS: Partial live APIs (${isGeminiActive ? 'Gemini' : 'SerpAPI'}). Built-in hybrid fallback active]`;
+                    apiStatusText.textContent = `Status: Partial live APIs (${isGeminiActive ? 'Gemini' : 'SerpAPI'}). Built-in hybrid fallback active`;
                     if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-warning)";
                 } else {
-                    apiStatusText.textContent = "[STATUS: Built-in Neural NLP Engine & Local Footprint active]";
+                    apiStatusText.textContent = "Status: Built-in Neural NLP Engine & Local Footprint active";
                     if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-safe)";
                 }
             }
         } catch (e) {
-            apiStatusText.textContent = "[STATUS: Built-in Neural Engine active]";
+            apiStatusText.textContent = "Status: Built-in Neural Engine active";
         }
     }
 
