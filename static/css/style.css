@@ -352,17 +352,57 @@ textarea#threatInput::-webkit-scrollbar-track {
 /* ==========================================================================
    Side Samples Drawer & Trigger (Positioned to the side)
    ========================================================================== */
-.side-samples-trigger {
+.top-nav-bar {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    z-index: 50;
+}
+
+.top-nav-link {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+    transition: color 0.15s ease;
+}
+
+.top-nav-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.hero-logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.hero-logo-link:hover .hero-title {
+    opacity: 0.95;
+}
+
+.bottom-bullet {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin: 0 0.5rem;
+    user-select: none;
+}
+
+.side-samples-trigger {
     background: transparent;
     border: none;
     color: var(--text-muted);
     font-size: 0.82rem;
     font-family: var(--font-mono);
     cursor: pointer;
-    z-index: 50;
     padding: 0.25rem 0.4rem;
     transition: color 0.15s ease;
 }

@@ -18,7 +18,9 @@
         <!-- Hero & Centered Search Omnibar -->
         <section class="hero-section" id="heroSection">
             <div class="logo-hero">
-                <h1 class="hero-title font-rounded">Sifter</h1>
+                <a href="index.html" class="hero-logo-link" title="Sifter Main Page">
+                    <h1 class="hero-title font-rounded">Sifter</h1>
+                </a>
                 <p class="hero-subtitle">Know before you click.</p>
             </div>
 
@@ -42,8 +44,11 @@
 
         </section>
 
-        <!-- Floating Side Samples Trigger (Pinned to side) -->
-        <button id="btnToggleSideSamples" class="side-samples-trigger mono" title="Open test samples">Samples</button>
+        <!-- Top Right Navigation (Main Page Link & Samples Drawer Trigger) -->
+        <div class="top-nav-bar mono">
+            <a href="index.html" class="top-nav-link" title="Sifter Main Page">Main Page</a>
+            <button id="btnToggleSideSamples" class="side-samples-trigger mono" title="Open test samples">Samples</button>
+        </div>
 
         <!-- Pinned Side Drawer for Samples -->
         <aside id="sideSamplesDrawer" class="side-samples-drawer mono hidden">
@@ -246,7 +251,9 @@
 
     <!-- Minimalist bottom link for about & copyright -->
     <footer class="minimal-bottom">
-        <a href="/about" class="bottom-about-link mono">Created By AJ and the Team</a>
+        <a href="index.html" class="bottom-about-link mono">Main Page</a>
+        <span class="bottom-bullet mono">&bull;</span>
+        <a href="about.html" class="bottom-about-link mono">Created By AJ and the Team</a>
     </footer>
 
     <script src="{{ url_for('static', filename='js/main.js') }}?v=1.2"></script>

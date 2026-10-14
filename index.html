@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifter</title>
+    <link rel="icon" type="image/svg+xml" href="static/favicon.svg">
+    <link rel="stylesheet" href="static/css/style.css?v=1.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+
+
+    <!-- Main Container -->
+    <main class="main-wrapper">
+        <!-- Hero & Centered Search Omnibar -->
+        <section class="hero-section" id="heroSection">
+            <div class="logo-hero">
+                <a href="index.html" class="hero-logo-link" title="Sifter Main Page">
+                    <h1 class="hero-title font-rounded">Sifter</h1>
+                </a>
+                <p class="hero-subtitle">Know before you click.</p>
+            </div>
+
+            <!-- Central Minimalist Search / Analysis Box (Text Only) -->
+            <div class="search-box-card">
+                <div class="input-container">
+                    <textarea 
+                        id="threatInput" 
+                        rows="1" 
+                        placeholder="Paste a suspicious URL, message, or email to analyze..."
+                        spellcheck="false"
+                        autocomplete="off"
+                    ></textarea>
+                    <div class="input-actions">
+                        <button id="btnClear" class="text-link-btn hidden">clear</button>
+                        <button id="btnAnalyze" class="btn-primary">Verify</button>
+                    </div>
+                </div>
+                <p class="search-disclaimer">Sifter uses AI and can make mistakes. Double-check before sharing sensitive info.</p>
+            </div>
+
+        </section>
+
+        <!-- Top Right Navigation (Main Page Link & Samples Drawer Trigger) -->
+        <div class="top-nav-bar mono">
+            <a href="index.html" class="top-nav-link" title="Sifter Main Page">Main Page</a>
+            <button id="btnToggleSideSamples" class="side-samples-trigger mono" title="Open test samples">Samples</button>
+        </div>
+
+        <!-- Pinned Side Drawer for Samples -->
+        <aside id="sideSamplesDrawer" class="side-samples-drawer mono hidden">
+            <div class="side-samples-header">
+                <span class="side-samples-title">Test Samples</span>
+                <button id="btnCloseSideSamples" class="side-samples-close">Close</button>
+            </div>
+            <p class="side-samples-hint">Click any sample to test detection:</p>
+            <div class="side-samples-list" id="presetChips">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </aside>
+
+        <!-- Loading State (Text Only) -->
+        <div class="loading-state hidden" id="loadingState">
+            <div class="loading-indicator mono">Analyzing threat vectors via Gemini & SerpAPI search index <span class="blink">...</span></div>
+            <p class="loading-subtext">Evaluating domain footprint, phishing patterns, and psychological urgency...</p>
+        </div>
+
+        <!-- Threat Assessment Results (List Wise, Unboxed) -->
+        <section class="result-section hidden" id="resultSection">
+            <div class="result-content-list">
+                <!-- 1. Header: Verdict & Score -->
+                <div class="result-list-item result-header-item">
+                    <div class="verdict-meta">
+                        <span class="label-eyebrow">Threat Assessment</span>
+                        <div class="verdict-badge-row">
+                            <span class="verdict-tag" id="verdictBadge">VERIFIED SAFE</span>
+                            <span class="threat-type-tag mono" id="threatTypeBadge">Phishing URL</span>
+                        </div>
+                    </div>
+
+                    <!-- Digital Trust Score Meter -->
+                    <div class="score-display">
+                        <div class="score-num-wrap">
+                            <span class="score-number" id="trustScoreVal">94</span>
+                            <span class="score-denom">/100</span>
+                        </div>
+                        <div class="score-label-col">
+                            <span class="score-title">TRUST SCORE</span>
+                            <span class="score-caption" id="scoreCaption">High Trust</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Bar indicator -->
+                <div class="trust-meter-bar">
+                    <div class="meter-fill" id="meterFill" style="width: 94%;"></div>
+                </div>
+
+                <!-- 2. Plain English Warning / Summary -->
+                <div class="result-list-item">
+                    <h3 class="section-list-heading">Assessment Summary</h3>
+                    <p class="summary-text" id="plainWarningText">
+                        This communication shows no deceptive hallmarks.
+                    </p>
+                </div>
+
+                <!-- 3. SerpAPI Search Intelligence Footprint (List-wise, not grid) -->
+                <div class="result-list-item">
+                    <div class="item-header-row">
+                        <h4 class="section-list-heading">Search Trust Footprint</h4>
+                        <span class="source-badge mono" id="serpSourceBadge">SerpAPI</span>
+                    </div>
+                    <div class="footprint-list-body">
+                        <div class="footprint-row">
+                            <span class="f-label">Extracted Domain:</span>
+                            <span class="f-value mono" id="extractedDomain">example.com</span>
+                        </div>
+                        <div class="footprint-row">
+                            <span class="f-label">Index Status:</span>
+                            <span class="f-value mono" id="domainStatus">Verified</span>
+                        </div>
+                        <div class="footprint-evidence mono" id="domainFootprintBox">
+                            Official registered domain with established search presence.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Deceptive Patterns & Triggers (Gemini AI) (List-wise, not grid) -->
+                <div class="result-list-item">
+                    <div class="item-header-row">
+                        <h4 class="section-list-heading">Detected Patterns & Triggers</h4>
+                        <span class="source-badge mono" id="aiEngineBadge">Gemini AI</span>
+                    </div>
+                    <div class="triggers-wrap">
+                        <span class="t-label">Triggers:</span>
+                        <div class="trigger-chips" id="triggerChips">
+                            <span class="t-chip mono">Artificial Urgency</span>
+                        </div>
+                    </div>
+                    <ul class="pattern-list" id="patternList">
+                        <li>No suspicious manipulation detected.</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Recommended Precautions & Next Steps -->
+                <div class="result-list-item">
+                    <h4 class="section-list-heading">Recommended Precautions</h4>
+                    <div class="precautions-list" id="precautionsList">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- 6. Actions (Copy Report & Scan Another) -->
+                <div class="result-list-item result-actions-item">
+                    <button class="btn-secondary" id="btnCopyReport">Copy Report</button>
+                    <button class="btn-outline" id="btnAnalyzeAnother">Scan Another</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Future Scope Modal: Phone & Laptop Native App (Text Only) -->
+    <div class="modal-overlay hidden" id="scopeModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">Future Scope: Phone & Laptop Agent</h3>
+                    <p class="modal-subtitle">Cross-platform daemon with pre-send threat blocking</p>
+                </div>
+                <button class="modal-close" id="btnCloseScope">Close</button>
+            </div>
+            <div class="modal-body">
+                <div class="scope-feature-grid">
+                    <div class="scope-feature-item">
+                        <span class="sf-num mono">01</span>
+                        <div class="sf-content">
+                            <h4>Pre-Send Outbound Message Blocker</h4>
+                            <p>Intercepts messages when drafting or about to send in WhatsApp, Telegram, SMS, or Slack. If an outbound link contains a phishing URL or fraudulent campaign, transmission is blocked instantly before hitting the network.</p>
+                        </div>
+                    </div>
+
+                    <div class="scope-feature-item">
+                        <span class="sf-num mono">02</span>
+                        <div class="sf-content">
+                            <h4>Real-Time Clipboard Shield</h4>
+                            <p>Monitors copied links in background memory on Android, iOS, Windows, and macOS. Flags deceptive homoglyphs and typosquatted domains before you even paste them.</p>
+                        </div>
+                    </div>
+
+                    <div class="scope-feature-item">
+                        <span class="sf-num mono">03</span>
+                        <div class="sf-content">
+                            <h4>Zero-Knowledge Threat Intelligence</h4>
+                            <p>Local edge inference detects malicious heuristics without transmitting private user conversation logs to central servers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mock-device-preview">
+                    <div class="device-pill mono">Interception Demo</div>
+                    <div class="mock-alert-box mono">
+                        Blocked: Outbound SMS to +1-800-xxx intercepted. Destination "sbi-kyc-verify.xyz" flagged as critical brand impersonation.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="btnScopeGotIt">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Keys Modal (Text Only) -->
+    <div class="modal-overlay hidden" id="configModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">API Configuration</h3>
+                    <p class="modal-subtitle">Configure Google Gemini & SerpAPI credentials</p>
+                </div>
+                <button class="modal-close" id="btnCloseConfig">Close</button>
+            </div>
+            <div class="modal-body">
+                <div class="api-status-banner mono" id="apiStatusBanner">
+                    <span id="apiStatusText">Built-in Neural Engine & Local Footprint active.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="geminiKeyInput">Google Gemini API Key (Optional)</label>
+                    <input type="password" id="geminiKeyInput" placeholder="AIzaSy..." class="form-input">
+                    <span class="form-hint">Enables live Gemini generative threat analysis. If omitted, built-in neural NLP runs.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="serpapiKeyInput">SerpAPI Key (Optional)</label>
+                    <input type="password" id="serpapiKeyInput" placeholder="SerpAPI secret key..." class="form-input">
+                    <span class="form-hint">Enables live Google Search index footprint queries. If omitted, built-in domain intelligence runs.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="btnCancelConfig">Cancel</button>
+                <button class="btn-primary" id="btnSaveConfig">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification (Text Only) -->
+    <div class="toast hidden mono" id="toast">Report copied to clipboard</div>
+
+    <!-- Minimalist bottom link for about & copyright -->
+    <footer class="minimal-bottom">
+        <a href="index.html" class="bottom-about-link mono">Main Page</a>
+        <span class="bottom-bullet mono">&bull;</span>
+        <a href="about.html" class="bottom-about-link mono">Created By AJ and the Team</a>
+    </footer>
+
+    <script src="static/js/main.js?v=1.2"></script>
+</body>
+</html>
