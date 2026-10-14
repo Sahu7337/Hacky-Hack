@@ -107,8 +107,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Input Handling & Auto-resize
     function autoResizeInput() {
+        if (!threatInput) return;
+        const inputContainer = threatInput.closest(".input-container");
+        
         threatInput.style.height = "auto";
-        threatInput.style.height = Math.min(160, Math.max(26, threatInput.scrollHeight)) + "px";
+        const scrollH = threatInput.scrollHeight;
+        const val = threatInput.value;
+
+        // Morph to rounded rectangle when text increases (multi-line, newline, or long string)
+        const isMultiLine = scrollH > 36 || val.includes("\n") || val.length > 70;
+
+        if (isMultiLine) {
+            if (inputContainer) inputContainer.classList.add("is-expanded");
+            threatInput.style.height = Math.min(180, Math.max(60, scrollH)) + "px";
+        } else {
+            if (inputContainer) inputContainer.classList.remove("is-expanded");
+            threatInput.style.height = "26px";
+        }
     }
 
     function updateClearButton() {
