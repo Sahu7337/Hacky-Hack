@@ -306,47 +306,65 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
     });
 
     // 6. Future Scope Modal Handlers
-    btnScope.addEventListener("click", () => scopeModal.classList.remove("hidden"));
-    btnCloseScope.addEventListener("click", () => scopeModal.classList.add("hidden"));
-    btnScopeGotIt.addEventListener("click", () => scopeModal.classList.add("hidden"));
-    scopeModal.addEventListener("click", (e) => {
-        if (e.target === scopeModal) scopeModal.classList.add("hidden");
-    });
+    if (btnScope) {
+        btnScope.addEventListener("click", () => scopeModal.classList.remove("hidden"));
+    }
+    if (btnCloseScope) {
+        btnCloseScope.addEventListener("click", () => scopeModal.classList.add("hidden"));
+    }
+    if (btnScopeGotIt) {
+        btnScopeGotIt.addEventListener("click", () => scopeModal.classList.add("hidden"));
+    }
+    if (scopeModal) {
+        scopeModal.addEventListener("click", (e) => {
+            if (e.target === scopeModal) scopeModal.classList.add("hidden");
+        });
+    }
 
     // 7. API Config Modal Handlers
-    btnConfig.addEventListener("click", async () => {
-        geminiKeyInput.value = localStorage.getItem("sifter_gemini_key") || localStorage.getItem("safer_gemini_key") || "";
-        serpapiKeyInput.value = localStorage.getItem("sifter_serp_key") || localStorage.getItem("safer_serp_key") || "";
-        await refreshApiStatus();
-        configModal.classList.remove("hidden");
-    });
+    if (btnConfig) {
+        btnConfig.addEventListener("click", async () => {
+            geminiKeyInput.value = localStorage.getItem("sifter_gemini_key") || localStorage.getItem("safer_gemini_key") || "";
+            serpapiKeyInput.value = localStorage.getItem("sifter_serp_key") || localStorage.getItem("safer_serp_key") || "";
+            await refreshApiStatus();
+            configModal.classList.remove("hidden");
+        });
+    }
 
-    btnCloseConfig.addEventListener("click", () => configModal.classList.add("hidden"));
-    btnCancelConfig.addEventListener("click", () => configModal.classList.add("hidden"));
-    configModal.addEventListener("click", (e) => {
-        if (e.target === configModal) configModal.classList.add("hidden");
-    });
+    if (btnCloseConfig) {
+        btnCloseConfig.addEventListener("click", () => configModal.classList.add("hidden"));
+    }
+    if (btnCancelConfig) {
+        btnCancelConfig.addEventListener("click", () => configModal.classList.add("hidden"));
+    }
+    if (configModal) {
+        configModal.addEventListener("click", (e) => {
+            if (e.target === configModal) configModal.classList.add("hidden");
+        });
+    }
 
-    btnSaveConfig.addEventListener("click", async () => {
-        const geminiKey = geminiKeyInput.value.trim();
-        const serpKey = serpapiKeyInput.value.trim();
+    if (btnSaveConfig) {
+        btnSaveConfig.addEventListener("click", async () => {
+            const geminiKey = geminiKeyInput.value.trim();
+            const serpKey = serpapiKeyInput.value.trim();
 
-        localStorage.setItem("sifter_gemini_key", geminiKey);
-        localStorage.setItem("sifter_serp_key", serpKey);
+            localStorage.setItem("sifter_gemini_key", geminiKey);
+            localStorage.setItem("sifter_serp_key", serpKey);
 
-        try {
-            await fetch("/api/save_keys", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ gemini_key: geminiKey, serpapi_key: serpKey })
-            });
-        } catch (e) {
-            console.warn("Could not save to server runtime, saved to browser storage.");
-        }
+            try {
+                await fetch("/api/save_keys", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ gemini_key: geminiKey, serpapi_key: serpKey })
+                });
+            } catch (e) {
+                console.warn("Could not save to server runtime, saved to browser storage.");
+            }
 
-        configModal.classList.add("hidden");
-        showToast("API credentials saved successfully.");
-    });
+            configModal.classList.add("hidden");
+            showToast("API credentials saved successfully.");
+        });
+    }
 
     async function refreshApiStatus() {
         try {
@@ -375,17 +393,19 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
     }
 
     // 8. Theme Toggle (Dark / Light)
-    btnThemeToggle.addEventListener("click", () => {
-        if (document.body.classList.contains("theme-dark")) {
-            document.body.classList.remove("theme-dark");
-            document.body.classList.add("theme-light");
-            localStorage.setItem("sifter_theme", "light");
-        } else {
-            document.body.classList.remove("theme-light");
-            document.body.classList.add("theme-dark");
-            localStorage.setItem("sifter_theme", "dark");
-        }
-    });
+    if (btnThemeToggle) {
+        btnThemeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("theme-dark")) {
+                document.body.classList.remove("theme-dark");
+                document.body.classList.add("theme-light");
+                localStorage.setItem("sifter_theme", "light");
+            } else {
+                document.body.classList.remove("theme-light");
+                document.body.classList.add("theme-dark");
+                localStorage.setItem("sifter_theme", "dark");
+            }
+        });
+    }
 
     // Restore Theme Preference
     const savedTheme = localStorage.getItem("sifter_theme") || localStorage.getItem("safer_theme");
