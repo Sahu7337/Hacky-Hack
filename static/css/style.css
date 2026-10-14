@@ -336,6 +336,18 @@ textarea#threatInput::-webkit-scrollbar-track {
     opacity: 0.9;
 }
 
+.search-disclaimer {
+    margin-top: 0.85rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    text-align: center;
+    letter-spacing: -0.01em;
+    user-select: none;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+}
+
 /* ==========================================================================
    Side Samples Drawer & Trigger (Positioned to the side)
    ========================================================================== */
