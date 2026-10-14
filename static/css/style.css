@@ -300,22 +300,20 @@ textarea#threatInput::placeholder {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-strong);
-    color: var(--text-secondary);
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.82rem;
     font-family: var(--font-mono);
     cursor: pointer;
     z-index: 50;
-    transition: all 0.15s ease;
+    padding: 0.25rem 0.4rem;
+    transition: color 0.15s ease;
 }
 
 .side-samples-trigger:hover {
     color: var(--text-primary);
-    border-color: var(--border-focus);
-    background: var(--bg-surface-hover);
+    text-decoration: underline;
 }
 
 .side-samples-drawer {
@@ -325,13 +323,13 @@ textarea#threatInput::placeholder {
     width: 320px;
     height: 100vh;
     background: var(--bg-surface);
-    border-left: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-subtle);
     padding: 1.5rem 1.25rem;
     z-index: 60;
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    box-shadow: -6px 0 24px rgba(0, 0, 0, 0.4);
+    box-shadow: none;
     overflow-y: auto;
 }
 
