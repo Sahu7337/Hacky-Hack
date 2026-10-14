@@ -1022,22 +1022,147 @@ textarea#threatInput::placeholder {
     z-index: 200;
 }
 
-.footer {
-    padding: 1.75rem 1.5rem;
-    border-top: 1px solid var(--border-subtle);
+/* Minimalist Bottom Link */
+.minimal-bottom {
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
     margin-top: auto;
 }
 
-.footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+.bottom-about-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    transition: color 0.15s ease;
+}
+
+.bottom-about-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+/* Rounded Font for Sifter Wordmark */
+.font-rounded {
+    font-family: 'Comfortaa', 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* About Page (Copyright & Created By) */
+.about-wrapper {
+    max-width: 680px;
+    padding: 3.5rem 1.5rem 4rem;
+}
+
+.about-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    text-align: center;
-    font-size: 0.75rem;
+    gap: 1.5rem;
+}
+
+.about-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back-link {
     color: var(--text-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    transition: color 0.15s ease;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+}
+
+.about-tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-heading {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+}
+
+.about-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.about-meta-row {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.a-label {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    width: 85px;
+}
+
+.a-val {
+    color: var(--text-primary);
+}
+
+.about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.about-list li {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.about-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+.about-footer {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
 }
 
 .hidden {

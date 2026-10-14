@@ -63,6 +63,10 @@ PRESET_TESTS = [
 def index():
     return render_template("index.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 @app.route("/api/analyze", methods=["POST"])
 def analyze_endpoint():
     data = request.get_json(force=True, silent=True) or {}
