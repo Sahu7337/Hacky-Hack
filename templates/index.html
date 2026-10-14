@@ -3,51 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sifter — AI Digital Threat Detection & Trust Engine</title>
+    <title>Sifter</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="theme-dark">
-    <!-- Background subtle mesh -->
-    <div class="bg-pattern"></div>
-
-    <!-- Navigation / Top Header -->
+    <!-- Navigation / Top Header (Text Only) -->
     <header class="navbar">
         <div class="nav-brand" id="navLogo">
-            <div class="logo-mark">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                </svg>
-            </div>
             <span class="brand-name">Sifter</span>
-            <span class="badge-version">AI Trust</span>
+            <span class="brand-sub">/ digital trust</span>
         </div>
 
-        <div class="nav-actions">
-            <button class="nav-btn" id="btnScope" title="Explore the Phone & Laptop Native App Roadmap">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
-                    <path d="M12 18h.01"/>
-                </svg>
-                <span>Future Scope</span>
-            </button>
-            <button class="nav-btn" id="btnConfig" title="Configure Gemini & SerpAPI Keys">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                <span>APIs</span>
-            </button>
-            <button class="nav-btn icon-only" id="btnThemeToggle" title="Toggle Theme Palette">
-                <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="4"/>
-                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-                </svg>
-            </button>
-        </div>
+        <nav class="nav-actions">
+            <button class="nav-text-btn" id="btnScope">future scope</button>
+            <button class="nav-text-btn" id="btnConfig">apis</button>
+            <button class="nav-text-btn" id="btnThemeToggle">theme</button>
+        </nav>
     </header>
 
     <!-- Main Container -->
@@ -55,61 +30,35 @@
         <!-- Hero & Centered Search Omnibar -->
         <section class="hero-section" id="heroSection">
             <div class="logo-hero">
-                <div class="hero-icon-wrap">
-                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <path d="m9 12 2 2 4-4"/>
-                    </svg>
-                </div>
                 <h1 class="hero-title">Sifter</h1>
-                <p class="hero-subtitle">AI-Powered Digital Threat Detection & Search Trust Verification</p>
+                <p class="hero-subtitle">AI-powered digital threat detection and search trust verification.</p>
             </div>
 
-            <!-- Central Minimalist Search / Analysis Box -->
+            <!-- Central Minimalist Search / Analysis Box (Text Only) -->
             <div class="search-box-card">
                 <div class="input-container">
-                    <div class="search-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="m21 21-4.3-4.3"/>
-                        </svg>
-                    </div>
                     <textarea 
                         id="threatInput" 
                         rows="2" 
-                        placeholder="Paste any suspicious URL, banking SMS, email, or message to analyze..."
+                        placeholder="Paste a suspicious URL, message, or email to analyze..."
                         spellcheck="false"
                         autocomplete="off"
                     ></textarea>
                     <div class="input-actions">
-                        <button id="btnClear" class="action-icon-btn hidden" title="Clear input">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"/>
-                                <line x1="6" y1="6" x2="18" y2="18"/>
-                            </svg>
-                        </button>
-                        <button id="btnAnalyze" class="btn-primary">
-                            <span class="btn-text">Verify Trust</span>
-                            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="5" y1="12" x2="19" y2="12"/>
-                                <polyline points="12 5 19 12 12 19"/>
-                            </svg>
-                        </button>
+                        <button id="btnClear" class="text-link-btn hidden">clear</button>
+                        <button id="btnAnalyze" class="btn-primary">Verify</button>
                     </div>
                 </div>
 
                 <div class="input-helper">
-                    <span class="helper-text">Accepts single URLs, SMS text, or email contents. Press <kbd>Enter</kbd> or <kbd>Ctrl+Enter</kbd> to analyze.</span>
+                    <span class="helper-text">Press Enter for single URLs, or Ctrl+Enter for multi-line messages.</span>
                 </div>
             </div>
 
-            <!-- Preloaded Test Cases for Judges & Evaluators -->
+            <!-- Preloaded Test Cases for Instant Testing (Text Only) -->
             <div class="presets-container">
                 <div class="presets-header">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                    </svg>
-                    <span>Instant Test Scenarios:</span>
+                    <span>Sample tests:</span>
                 </div>
                 <div class="preset-chips" id="presetChips">
                     <!-- Populated dynamically via JS -->
@@ -117,30 +66,22 @@
             </div>
         </section>
 
-        <!-- Loading State -->
+        <!-- Loading State (Text Only) -->
         <div class="loading-state hidden" id="loadingState">
-            <div class="scanner-anim">
-                <div class="scanner-ring"></div>
-                <div class="scanner-ring outer"></div>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-            </div>
-            <p class="loading-text">Analyzing threat vectors via Gemini AI & SerpAPI search intelligence...</p>
-            <span class="loading-subtext">Evaluating domain footprint, phishing patterns, and psychological urgency</span>
+            <div class="loading-indicator mono">[ analyzing threat vectors via gemini & serpapi search index <span class="blink">_</span> ]</div>
+            <p class="loading-subtext">Evaluating domain footprint, phishing patterns, and psychological urgency...</p>
         </div>
 
-        <!-- Threat Assessment Results Card -->
+        <!-- Threat Assessment Results Card (Text Only) -->
         <section class="result-section hidden" id="resultSection">
-            <!-- Result Main Card -->
             <div class="result-card">
                 <!-- Top Header: Verdict & Score -->
                 <div class="result-header">
                     <div class="verdict-meta">
-                        <span class="label-eyebrow">DIGITAL THREAT ASSESSMENT</span>
+                        <span class="label-eyebrow">[ THREAT ASSESSMENT ]</span>
                         <div class="verdict-badge-row">
                             <span class="verdict-tag" id="verdictBadge">VERIFIED SAFE</span>
-                            <span class="threat-type-tag" id="threatTypeBadge">Phishing URL</span>
+                            <span class="threat-type-tag mono" id="threatTypeBadge">Phishing URL</span>
                         </div>
                     </div>
 
@@ -152,7 +93,7 @@
                         </div>
                         <div class="score-label-col">
                             <span class="score-title">TRUST SCORE</span>
-                            <span class="score-caption" id="scoreCaption">High Digital Trust</span>
+                            <span class="score-caption" id="scoreCaption">High Trust</span>
                         </div>
                     </div>
                 </div>
@@ -164,15 +105,8 @@
 
                 <!-- Plain English Warning / Summary -->
                 <div class="summary-box">
-                    <div class="summary-icon" id="summaryIcon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="12" y1="8" x2="12" y2="12"/>
-                            <line x1="12" y1="16" x2="12.01" y2="16"/>
-                        </svg>
-                    </div>
                     <div class="summary-content">
-                        <h3 class="summary-heading">Understandable Risk Assessment</h3>
+                        <h3 class="summary-heading">Assessment Summary</h3>
                         <p class="summary-text" id="plainWarningText">
                             This communication shows no deceptive hallmarks.
                         </p>
@@ -184,17 +118,11 @@
                     <!-- Column 1: SerpAPI Search Intelligence Footprint -->
                     <div class="panel-card">
                         <div class="panel-header">
-                            <div class="panel-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="11" cy="11" r="8"/>
-                                    <path d="m21 21-4.3-4.3"/>
-                                </svg>
-                            </div>
                             <div class="panel-title-wrap">
-                                <h4 class="panel-title">SerpAPI Search Trust Footprint</h4>
-                                <span class="panel-subtitle">Google Search Index Reputation</span>
+                                <h4 class="panel-title">Search Trust Footprint</h4>
+                                <span class="panel-subtitle">SerpAPI / Google Search Index</span>
                             </div>
-                            <span class="source-badge" id="serpSourceBadge">SerpAPI / Web Engine</span>
+                            <span class="source-badge mono" id="serpSourceBadge">SerpAPI</span>
                         </div>
                         <div class="panel-body">
                             <div class="footprint-row">
@@ -202,10 +130,10 @@
                                 <span class="f-value mono" id="extractedDomain">example.com</span>
                             </div>
                             <div class="footprint-row">
-                                <span class="f-label">Search Index Status:</span>
-                                <span class="f-value" id="domainStatus">Verified High-Trust</span>
+                                <span class="f-label">Index Status:</span>
+                                <span class="f-value mono" id="domainStatus">Verified</span>
                             </div>
-                            <div class="footprint-box" id="domainFootprintBox">
+                            <div class="footprint-box mono" id="domainFootprintBox">
                                 Official registered domain with established search presence.
                             </div>
                         </div>
@@ -214,24 +142,17 @@
                     <!-- Column 2: Psychological & Deceptive Patterns -->
                     <div class="panel-card">
                         <div class="panel-header">
-                            <div class="panel-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                    <line x1="12" y1="9" x2="12" y2="13"/>
-                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                                </svg>
-                            </div>
                             <div class="panel-title-wrap">
-                                <h4 class="panel-title">Deceptive Patterns & Triggers</h4>
-                                <span class="panel-subtitle">AI Behavioral Fingerprints</span>
+                                <h4 class="panel-title">Patterns & Triggers</h4>
+                                <span class="panel-subtitle">AI Behavioral Markers</span>
                             </div>
-                            <span class="source-badge" id="aiEngineBadge">Gemini AI</span>
+                            <span class="source-badge mono" id="aiEngineBadge">Gemini AI</span>
                         </div>
                         <div class="panel-body">
                             <div class="triggers-wrap">
-                                <span class="t-label">Identified Manipulation Hooks:</span>
+                                <span class="t-label">Triggers:</span>
                                 <div class="trigger-chips" id="triggerChips">
-                                    <span class="t-chip">Artificial Urgency</span>
+                                    <span class="t-chip mono">Artificial Urgency</span>
                                 </div>
                             </div>
                             <ul class="pattern-list" id="patternList">
@@ -244,161 +165,114 @@
                 <!-- Recommended Precautions & Next Steps -->
                 <div class="precautions-card">
                     <div class="precautions-header">
-                        <div class="precautions-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="precautions-title">Recommended Safety Precautions</h4>
-                            <p class="precautions-subtitle">Immediate actions to protect your digital accounts and privacy</p>
-                        </div>
+                        <h4 class="precautions-title">Recommended Precautions</h4>
+                        <span class="precautions-subtitle">Steps to ensure safety</span>
                     </div>
                     <div class="precautions-list" id="precautionsList">
                         <!-- Populated via JS -->
                     </div>
                 </div>
 
-                <!-- Footer Actions -->
+                <!-- Footer Actions (Text Only) -->
                 <div class="result-footer">
-                    <button class="btn-secondary" id="btnCopyReport">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
-                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-                        </svg>
-                        <span>Copy Assessment Report</span>
-                    </button>
-                    <button class="btn-outline" id="btnAnalyzeAnother">
-                        <span>Scan Another Input</span>
-                    </button>
+                    <button class="btn-secondary" id="btnCopyReport">Copy Report</button>
+                    <button class="btn-outline" id="btnAnalyzeAnother">Scan Another</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Future Scope Modal: Phone & Laptop Native App -->
+    <!-- Future Scope Modal: Phone & Laptop Native App (Text Only) -->
     <div class="modal-overlay hidden" id="scopeModal">
         <div class="modal-card">
             <div class="modal-header">
-                <div class="modal-title-row">
-                    <div class="modal-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
-                            <path d="M12 18h.01"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="modal-title">Future Scope: Cross-Platform Native Agent</h3>
-                        <p class="modal-subtitle">Proactive protection on Phone & Laptop with Pre-Send Interception</p>
-                    </div>
+                <div>
+                    <h3 class="modal-title">Future Scope: Phone & Laptop Agent</h3>
+                    <p class="modal-subtitle">Cross-platform daemon with pre-send threat blocking</p>
                 </div>
-                <button class="modal-close" id="btnCloseScope">&times;</button>
+                <button class="modal-close" id="btnCloseScope">[ close ]</button>
             </div>
             <div class="modal-body">
                 <div class="scope-feature-grid">
                     <div class="scope-feature-item">
-                        <div class="sf-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
-                            </svg>
-                        </div>
+                        <span class="sf-num mono">01</span>
                         <div class="sf-content">
                             <h4>Pre-Send Outbound Message Blocker</h4>
-                            <p>Intercepts messages when you are typing or about to hit send in WhatsApp, Telegram, SMS, or Slack. If it contains a known or zero-day phishing link, it is immediately blocked with an instant alert.</p>
+                            <p>Intercepts messages when drafting or about to send in WhatsApp, Telegram, SMS, or Slack. If an outbound link contains a phishing URL or fraudulent campaign, transmission is blocked instantly before hitting the network.</p>
                         </div>
                     </div>
 
                     <div class="scope-feature-item">
-                        <div class="sf-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                            </svg>
-                        </div>
+                        <span class="sf-num mono">02</span>
                         <div class="sf-content">
                             <h4>Real-Time Clipboard Shield</h4>
-                            <p>Actively analyzes copied links in background memory on Android, iOS, and PC. Flags deceptive homoglyphs and typosquatted domains before you even paste them.</p>
+                            <p>Monitors copied links in background memory on Android, iOS, Windows, and macOS. Flags deceptive homoglyphs and typosquatted domains before you even paste them.</p>
                         </div>
                     </div>
 
                     <div class="scope-feature-item">
-                        <div class="sf-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            </svg>
-                        </div>
+                        <span class="sf-num mono">03</span>
                         <div class="sf-content">
-                            <h4>Federated Threat Intelligence Mesh</h4>
-                            <p>Locally analyzes behavioral risks without uploading private user conversations to central servers, preserving user privacy while syncing new threat signatures.</p>
+                            <h4>Zero-Knowledge Threat Intelligence</h4>
+                            <p>Local edge inference detects malicious heuristics without transmitting private user conversation logs to central servers.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mock-device-preview">
-                    <div class="device-pill">📱 Mobile & 💻 Laptop Cross-Platform Daemon</div>
-                    <div class="mock-alert-box">
-                        <div class="m-dot red"></div>
-                        <span><strong>Sifter Guard Alert:</strong> Outbound message to <em>+1 800-xxx</em> blocked. Link <code>sbi-kyc-verify.xyz</code> was flagged as critical phishing.</span>
+                    <div class="device-pill mono">[ INTERCEPTION DEMO ]</div>
+                    <div class="mock-alert-box mono">
+                        [BLOCKED] Outbound SMS to +1-800-xxx intercepted. Destination "sbi-kyc-verify.xyz" flagged as critical brand impersonation.
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-primary" id="btnScopeGotIt">Close Preview</button>
+                <button class="btn-primary" id="btnScopeGotIt">Close</button>
             </div>
         </div>
     </div>
 
-    <!-- API Keys Modal -->
+    <!-- API Keys Modal (Text Only) -->
     <div class="modal-overlay hidden" id="configModal">
         <div class="modal-card">
             <div class="modal-header">
-                <div class="modal-title-row">
-                    <div class="modal-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="modal-title">API Configuration</h3>
-                        <p class="modal-subtitle">Connect Google Gemini API & SerpAPI for live internet analysis</p>
-                    </div>
+                <div>
+                    <h3 class="modal-title">API Configuration</h3>
+                    <p class="modal-subtitle">Configure Google Gemini & SerpAPI credentials</p>
                 </div>
-                <button class="modal-close" id="btnCloseConfig">&times;</button>
+                <button class="modal-close" id="btnCloseConfig">[ close ]</button>
             </div>
             <div class="modal-body">
-                <div class="api-status-banner" id="apiStatusBanner">
-                    <div class="status-indicator-dot" id="apiStatusDot"></div>
-                    <span id="apiStatusText">Built-in Neural Engine & Local Footprint active (100% functional out of the box)</span>
+                <div class="api-status-banner mono" id="apiStatusBanner">
+                    <span id="apiStatusText">Built-in Neural Engine & Local Footprint active.</span>
                 </div>
 
                 <div class="form-group">
                     <label for="geminiKeyInput">Google Gemini API Key (Optional)</label>
                     <input type="password" id="geminiKeyInput" placeholder="AIzaSy..." class="form-input">
-                    <span class="form-hint">Used for live generative semantic threat reasoning. If omitted, built-in neural NLP evaluates threats.</span>
+                    <span class="form-hint">Enables live Gemini generative threat analysis. If omitted, built-in neural NLP runs.</span>
                 </div>
 
                 <div class="form-group">
                     <label for="serpapiKeyInput">SerpAPI Key (Optional)</label>
                     <input type="password" id="serpapiKeyInput" placeholder="SerpAPI secret key..." class="form-input">
-                    <span class="form-hint">Used for live Google Search index footprint verification. If omitted, built-in search footprint knowledge engine evaluates trust.</span>
+                    <span class="form-hint">Enables live Google Search index footprint queries. If omitted, built-in domain intelligence runs.</span>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-secondary" id="btnCancelConfig">Cancel</button>
-                <button class="btn-primary" id="btnSaveConfig">Save Settings</button>
+                <button class="btn-primary" id="btnSaveConfig">Save</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast hidden" id="toast">Report copied to clipboard!</div>
+    <!-- Toast Notification (Text Only) -->
+    <div class="toast hidden mono" id="toast">[ Report copied to clipboard ]</div>
 
-    <!-- Footer -->
+    <!-- Footer (Text Only) -->
     <footer class="footer">
-        <div class="footer-inner">
-            <span class="f-copyright">Sifter — AI Digital Threat Detection & Digital Trust Platform</span>
+        <div class="footer-inner mono">
+            <span class="f-copyright">Sifter — AI Digital Threat Detection & Digital Trust</span>
             <span class="f-tech">Powered by Google Gemini AI & SerpAPI Search Footprint Engine</span>
         </div>
     </footer>

@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingState.classList.remove("hidden");
         btnAnalyze.disabled = true;
 
-        const storedGemini = localStorage.getItem("safer_gemini_key") || "";
-        const storedSerp = localStorage.getItem("safer_serp_key") || "";
+        const storedGemini = localStorage.getItem("sifter_gemini_key") || localStorage.getItem("safer_gemini_key") || "";
+        const storedSerp = localStorage.getItem("sifter_serp_key") || localStorage.getItem("safer_serp_key") || "";
 
         try {
             const response = await fetch("/api/analyze", {
@@ -315,8 +315,8 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
 
     // 7. API Config Modal Handlers
     btnConfig.addEventListener("click", async () => {
-        geminiKeyInput.value = localStorage.getItem("safer_gemini_key") || "";
-        serpapiKeyInput.value = localStorage.getItem("safer_serp_key") || "";
+        geminiKeyInput.value = localStorage.getItem("sifter_gemini_key") || localStorage.getItem("safer_gemini_key") || "";
+        serpapiKeyInput.value = localStorage.getItem("sifter_serp_key") || localStorage.getItem("safer_serp_key") || "";
         await refreshApiStatus();
         configModal.classList.remove("hidden");
     });
@@ -331,8 +331,8 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
         const geminiKey = geminiKeyInput.value.trim();
         const serpKey = serpapiKeyInput.value.trim();
 
-        localStorage.setItem("safer_gemini_key", geminiKey);
-        localStorage.setItem("safer_serp_key", serpKey);
+        localStorage.setItem("sifter_gemini_key", geminiKey);
+        localStorage.setItem("sifter_serp_key", serpKey);
 
         try {
             await fetch("/api/save_keys", {
@@ -353,24 +353,24 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
             const res = await fetch("/api/status");
             if (res.ok) {
                 const st = await res.json();
-                const hasLocalGemini = Boolean(localStorage.getItem("safer_gemini_key"));
-                const hasLocalSerp = Boolean(localStorage.getItem("safer_serp_key"));
+                const hasLocalGemini = Boolean(localStorage.getItem("sifter_gemini_key") || localStorage.getItem("safer_gemini_key"));
+                const hasLocalSerp = Boolean(localStorage.getItem("sifter_serp_key") || localStorage.getItem("safer_serp_key"));
                 const isGeminiActive = st.gemini_active || hasLocalGemini;
                 const isSerpActive = st.serpapi_active || hasLocalSerp;
 
                 if (isGeminiActive && isSerpActive) {
-                    apiStatusText.textContent = "Google Gemini AI (Live) & SerpAPI (Live) are active.";
-                    apiStatusDot.style.backgroundColor = "var(--status-safe)";
+                    apiStatusText.textContent = "[STATUS: Google Gemini AI & SerpAPI active (Live Mode)]";
+                    if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-safe)";
                 } else if (isGeminiActive || isSerpActive) {
-                    apiStatusText.textContent = `Partial live APIs connected (${isGeminiActive ? 'Gemini' : 'SerpAPI'}). Built-in hybrid fallback active.`;
-                    apiStatusDot.style.backgroundColor = "var(--status-warning)";
+                    apiStatusText.textContent = `[STATUS: Partial live APIs (${isGeminiActive ? 'Gemini' : 'SerpAPI'}). Built-in hybrid fallback active]`;
+                    if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-warning)";
                 } else {
-                    apiStatusText.textContent = "Built-in Neural NLP Engine & Local Footprint active (Works 100% out of the box).";
-                    apiStatusDot.style.backgroundColor = "var(--status-safe)";
+                    apiStatusText.textContent = "[STATUS: Built-in Neural NLP Engine & Local Footprint active]";
+                    if (apiStatusDot) apiStatusDot.style.backgroundColor = "var(--status-safe)";
                 }
             }
         } catch (e) {
-            apiStatusText.textContent = "Built-in Neural Engine active.";
+            apiStatusText.textContent = "[STATUS: Built-in Neural Engine active]";
         }
     }
 
@@ -379,16 +379,16 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
         if (document.body.classList.contains("theme-dark")) {
             document.body.classList.remove("theme-dark");
             document.body.classList.add("theme-light");
-            localStorage.setItem("safer_theme", "light");
+            localStorage.setItem("sifter_theme", "light");
         } else {
             document.body.classList.remove("theme-light");
             document.body.classList.add("theme-dark");
-            localStorage.setItem("safer_theme", "dark");
+            localStorage.setItem("sifter_theme", "dark");
         }
     });
 
     // Restore Theme Preference
-    const savedTheme = localStorage.getItem("safer_theme");
+    const savedTheme = localStorage.getItem("sifter_theme") || localStorage.getItem("safer_theme");
     if (savedTheme === "light") {
         document.body.classList.remove("theme-dark");
         document.body.classList.add("theme-light");
