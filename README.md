@@ -1,7 +1,9 @@
 # Sifter — AI-Powered Digital Threat Detection and Digital Trust Engine
 
-Hackathon 2026: Track 1 — Cybersecurity and Digital Trust  
-Tagline: Know before you click.
+> ⚡ **Hackathon 2026 — Track: Cybersecurity & Digital Trust**  
+> **Recognition:** Top 6 Finalist  
+> **Build:** Conceived, architected, and built in an intense 3-hour sprint.  
+> **Tagline:** Know before you click.
 
 ---
 
