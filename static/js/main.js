@@ -289,6 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Reveal and scroll smoothly
+        document.body.classList.add("has-results");
         resultSection.classList.remove("hidden");
         resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -323,6 +324,7 @@ ${(latestResult.recommended_precautions || []).map((p, i) => `${i+1}. ${p}`).joi
         threatInput.value = "";
         autoResizeInput();
         updateClearButton();
+        document.body.classList.remove("has-results");
         resultSection.classList.add("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
         threatInput.focus();

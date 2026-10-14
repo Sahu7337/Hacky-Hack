@@ -20,9 +20,8 @@ def analyze_with_gemini(text: str, domain_intel: dict = None, gemini_key: str = 
 
     # If Gemini API key is provided, call Google Generative AI REST API
     if gemini_key:
-        try:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
-            prompt = f"""You are a world-class Cybersecurity Threat Analyst and Digital Trust Expert.
+        models_to_try = ["gemini-2.5-flash", "gemini-3.8-flash"]
+        prompt = f"""You are a world-class Cybersecurity Threat Analyst and Digital Trust Expert.
 Analyze the following input (which may be a URL, an SMS message, an email, or social media text) for potential digital threats such as phishing, fraud, smishing, or malicious impersonation.
 
 Input to analyze:
@@ -50,27 +49,30 @@ Evaluate the threat thoroughly and return ONLY a valid, raw JSON object (no mark
     "<actionable instruction 3>"
   ]
 }}"""
-            payload = {
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {
-                    "temperature": 0.2,
-                    "maxOutputTokens": 800
-                }
+        payload = {
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "temperature": 0.2,
+                "maxOutputTokens": 2048,
+                "responseMimeType": "application/json"
             }
-            res = requests.post(url, json=payload, timeout=8)
-            if res.status_code == 200:
-                result_json = res.json()
-                cand_text = result_json["candidates"][0]["content"]["parts"][0]["text"]
-                # Clean up any potential markdown fences
-                clean_text = re.sub(r"^```json\s*", "", cand_text.strip())
-                clean_text = re.sub(r"^```\s*", "", clean_text)
-                clean_text = re.sub(r"\s*```$", "", clean_text)
-                parsed = json.loads(clean_text)
-                parsed["engine"] = "Google Gemini AI (Live)"
-                return parsed
-        except Exception as e:
-            # Fall back to local neural heuristics on API error
-            pass
+        }
+
+        for model in models_to_try:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={gemini_key}"
+                res = requests.post(url, json=payload, timeout=9)
+                if res.status_code == 200:
+                    result_json = res.json()
+                    cand_text = result_json["candidates"][0]["content"]["parts"][0]["text"]
+                    # Extract JSON object even if wrapped in markdown
+                    json_match = re.search(r"\{.*\}", cand_text, re.DOTALL)
+                    if json_match:
+                        parsed = json.loads(json_match.group(0))
+                        parsed["engine"] = f"Google Gemini AI (Live - {model})"
+                        return parsed
+            except Exception:
+                continue
 
     # High-precision local heuristic threat engine (Fallback / Default)
     return local_threat_engine(text, domain_intel)
