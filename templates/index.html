@@ -27,7 +27,7 @@
                 <div class="input-container">
                     <textarea 
                         id="threatInput" 
-                        rows="2" 
+                        rows="1" 
                         placeholder="Paste a suspicious URL, message, or email to analyze..."
                         spellcheck="false"
                         autocomplete="off"
@@ -36,10 +36,6 @@
                         <button id="btnClear" class="text-link-btn hidden">clear</button>
                         <button id="btnAnalyze" class="btn-primary">Verify</button>
                     </div>
-                </div>
-
-                <div class="input-helper">
-                    <span class="helper-text">Press Enter for single URLs, or Ctrl+Enter for multi-line messages.</span>
                 </div>
             </div>
 
@@ -249,7 +245,7 @@
 
     <!-- Minimalist bottom link for about & copyright -->
     <footer class="minimal-bottom">
-        <a href="/about" class="bottom-about-link mono">Copyright & Created by</a>
+        <a href="/about" class="bottom-about-link mono">Created By AJ and the Team</a>
     </footer>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

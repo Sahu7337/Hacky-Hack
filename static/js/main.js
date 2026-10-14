@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Input Handling & Auto-resize
     function autoResizeInput() {
         threatInput.style.height = "auto";
-        threatInput.style.height = Math.min(160, Math.max(48, threatInput.scrollHeight)) + "px";
+        threatInput.style.height = Math.min(160, Math.max(26, threatInput.scrollHeight)) + "px";
     }
 
     function updateClearButton() {

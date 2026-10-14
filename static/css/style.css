@@ -38,9 +38,10 @@
     --status-danger-bg: rgba(239, 68, 68, 0.1);
     --status-danger-border: rgba(239, 68, 68, 0.35);
 
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --radius-sm: 9999px;
+    --radius-md: 9999px;
+    --radius-lg: 9999px;
+    --radius-pill: 9999px;
 }
 
 /* Light Theme Overrides */
@@ -200,7 +201,7 @@ body.has-results .logo-hero {
     font-weight: 400;
 }
 
-/* Central Search Omnibar */
+/* Central Search Omnibar (Pill Shaped) */
 .search-box-card {
     width: 100%;
     max-width: 720px;
@@ -210,12 +211,13 @@ body.has-results .logo-hero {
 .input-container {
     background: var(--bg-surface);
     border: 1px solid var(--border-strong);
-    border-radius: var(--radius-md);
-    padding: 0.85rem 1rem;
+    border-radius: 9999px;
+    padding: 0.4rem 0.5rem 0.4rem 1.4rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 0.75rem;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .input-container:focus-within {
@@ -231,9 +233,10 @@ textarea#threatInput {
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 0.95rem;
-    line-height: 1.5;
-    min-height: 54px;
+    line-height: 1.4;
+    min-height: 26px;
     max-height: 180px;
+    padding: 0.35rem 0;
 }
 
 textarea#threatInput::placeholder {
@@ -244,9 +247,8 @@ textarea#threatInput::placeholder {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.75rem;
-    padding-top: 0.4rem;
-    border-top: 1px solid var(--border-subtle);
+    gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .text-link-btn {
@@ -256,39 +258,31 @@ textarea#threatInput::placeholder {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     cursor: pointer;
+    padding: 0.35rem 0.65rem;
+    border-radius: 9999px;
+    transition: color 0.15s ease;
 }
 
 .text-link-btn:hover {
     color: var(--text-primary);
-    text-decoration: underline;
 }
 
 .btn-primary {
     background: var(--text-primary);
     color: var(--bg-main);
     border: 1px solid var(--text-primary);
-    padding: 0.45rem 1.15rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.35rem;
+    border-radius: 9999px;
     font-weight: 700;
     font-size: 0.86rem;
     font-family: var(--font-mono);
     cursor: pointer;
     transition: opacity 0.15s ease;
+    white-space: nowrap;
 }
 
 .btn-primary:hover {
     opacity: 0.9;
-}
-
-.input-helper {
-    padding: 0.45rem 0.25rem 0;
-    text-align: center;
-}
-
-.helper-text {
-    font-size: 0.76rem;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -301,8 +295,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface);
     border: 1px solid var(--border-strong);
     color: var(--text-secondary);
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-sm);
+    padding: 0.45rem 1.15rem;
+    border-radius: 9999px;
     font-size: 0.8rem;
     font-family: var(--font-mono);
     cursor: pointer;
@@ -349,17 +343,20 @@ textarea#threatInput::placeholder {
 }
 
 .side-samples-close {
-    background: transparent;
-    border: none;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    font-size: 0.78rem;
+    font-size: 0.74rem;
+    padding: 0.22rem 0.65rem;
+    border-radius: 9999px;
     cursor: pointer;
     font-family: var(--font-mono);
+    transition: all 0.15s ease;
 }
 
 .side-samples-close:hover {
     color: var(--text-primary);
-    text-decoration: underline;
+    border-color: var(--border-focus);
 }
 
 .side-samples-hint {
@@ -376,13 +373,13 @@ textarea#threatInput::placeholder {
 .side-sample-item {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    padding: 0.65rem 0.75rem;
+    border-radius: 9999px;
+    padding: 0.6rem 1.15rem;
     text-align: left;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.15rem;
     font-family: var(--font-mono);
     transition: all 0.15s ease;
 }
@@ -501,11 +498,11 @@ textarea#threatInput::placeholder {
 }
 
 .verdict-tag {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 800;
     font-family: var(--font-mono);
-    padding: 0.3rem 0.65rem;
-    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
     letter-spacing: 0.02em;
 }
 
@@ -514,8 +511,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    padding: 0.28rem 0.55rem;
-    border-radius: var(--radius-sm);
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
     font-family: var(--font-mono);
 }
 
@@ -624,8 +621,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    padding: 0.15rem 0.45rem;
-    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
     font-family: var(--font-mono);
 }
 
@@ -702,8 +699,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    padding: 0.18rem 0.5rem;
-    border-radius: var(--radius-sm);
+    padding: 0.22rem 0.7rem;
+    border-radius: 9999px;
     font-family: var(--font-mono);
 }
 
@@ -772,8 +769,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-strong);
     color: var(--text-primary);
-    padding: 0.45rem 0.95rem;
-    border-radius: var(--radius-sm);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
     font-size: 0.82rem;
     font-weight: 600;
     font-family: var(--font-mono);
@@ -790,8 +787,8 @@ textarea#threatInput::placeholder {
     background: transparent;
     border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    padding: 0.45rem 0.85rem;
-    border-radius: var(--radius-sm);
+    padding: 0.5rem 1.15rem;
+    border-radius: 9999px;
     font-size: 0.82rem;
     font-family: var(--font-mono);
     cursor: pointer;
@@ -952,8 +949,8 @@ textarea#threatInput::placeholder {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-strong);
     color: var(--text-primary);
-    padding: 0.55rem 0.75rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.1rem;
+    border-radius: 9999px;
     font-size: 0.85rem;
     font-family: var(--font-mono);
     outline: none;
@@ -969,11 +966,12 @@ textarea#threatInput::placeholder {
     font-family: var(--font-mono);
     color: var(--text-muted);
     line-height: 1.4;
+    padding-left: 0.5rem;
 }
 
 .api-status-banner {
-    padding: 0.55rem 0.75rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.1rem;
+    border-radius: 9999px;
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     font-size: 0.78rem;
@@ -999,31 +997,39 @@ textarea#threatInput::placeholder {
     transform: translateX(-50%);
     background: var(--text-primary);
     color: var(--bg-main);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-sm);
+    padding: 0.6rem 1.35rem;
+    border-radius: 9999px;
     font-size: 0.82rem;
     font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     z-index: 200;
 }
 
-/* Minimalist Bottom Link */
+/* Minimalist Bottom Link (Pill Shaped) */
 .minimal-bottom {
-    padding: 1rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.75rem;
     text-align: center;
     margin-top: auto;
 }
 
 .bottom-about-link {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.78rem;
     font-family: var(--font-mono);
-    transition: color 0.15s ease;
+    padding: 0.4rem 1.15rem;
+    border-radius: 9999px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    display: inline-block;
+    transition: all 0.15s ease;
 }
 
 .bottom-about-link:hover {
     color: var(--text-primary);
-    text-decoration: underline;
+    background: var(--bg-surface-hover);
+    border-color: var(--border-focus);
+    text-decoration: none;
 }
 
 /* Rounded Font for Sifter Wordmark */
@@ -1042,8 +1048,8 @@ textarea#threatInput::placeholder {
 .about-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-strong);
-    border-radius: var(--radius-md);
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 2.25rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -1058,17 +1064,23 @@ textarea#threatInput::placeholder {
 }
 
 .back-link {
-    color: var(--text-muted);
-    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
     text-decoration: none;
     margin-bottom: 0.75rem;
     display: inline-block;
-    transition: color 0.15s ease;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    transition: all 0.15s ease;
+    align-self: flex-start;
 }
 
 .back-link:hover {
     color: var(--text-primary);
-    text-decoration: underline;
+    background: var(--bg-surface-hover);
+    border-color: var(--border-focus);
 }
 
 .about-title {
